@@ -2,17 +2,26 @@ pipeline {
     agent any
 
     stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    // Checkout the demo-app branch
+                    sh 'git checkout demo-app'
+                }
+            }
+        }
         stage('Build') {
             steps {
                 script {
-                    sh 'ls -l' // List files
-                    sh 'chmod +x gradlew' // Make gradlew executable
-
-                    // Set git user configuration
-                    sh 'git config --global user.email "kavanagowdra24@gmail.com"'
-                    sh 'git config --global user.name "kavanaGowdra"
-
-                    sh './gradlew build' // Run the Gradle build
+                    // Make gradlew executable
+                    sh 'chmod +x gradlew'
+                    
+                    // Set git user configuration (fix the typo here)
+                    sh 'git config --global user.name "kavanaGowdra"'
+                    sh 'git config --global user.email "your-email@example.com"'
+                    
+                    // Run gradle build
+                    sh './gradlew build'
                 }
             }
         }
