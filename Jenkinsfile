@@ -5,10 +5,14 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    // Ensure you're in the root directory
-                    sh 'ls -l'  // List contents to check if gradlew exists
-                    sh 'chmod +x gradlew'  // Make gradlew executable
-                    sh './gradlew build'  // Run the build if gradlew exists
+                    sh 'ls -l' // List files
+                    sh 'chmod +x gradlew' // Make gradlew executable
+
+                    // Set git user configuration
+                    sh 'git config --global user.email "kavanagowdra24@gmail.com"'
+                    sh 'git config --global user.name "kavanaGowdra"
+
+                    sh './gradlew build' // Run the Gradle build
                 }
             }
         }
