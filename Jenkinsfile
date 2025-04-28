@@ -5,8 +5,13 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    sh 'ls -l'  // Add this line to debug the contents of the workspace
+                    // Debugging: List files in the workspace
+                    sh 'ls -l'
+
+                    // Make gradlew executable
                     sh 'chmod +x gradlew'
+                    
+                    // Run gradlew build
                     sh './gradlew build'
                 }
             }
